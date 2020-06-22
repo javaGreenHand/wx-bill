@@ -1,0 +1,13 @@
+<view class="page" data-weui-theme="{{theme}}">
+
+	<view class="page__bd">
+		<view class="weui-cells__title">记账明细</view>
+		<view wx:for="{{bills}}" wx:key="{{index}}" class="weui-cells weui-cells_after-title">
+			<navigator url="add?id={{bills[index].id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+				<view class="weui-cell__bd">{{bills[index].money}}元</view>
+				<view class="weui-cell__ft weui-cell__ft_in-access">{{bills[index].occurDate}}</view>
+			</navigator>
+		</view>
+	</view>
+
+</view>

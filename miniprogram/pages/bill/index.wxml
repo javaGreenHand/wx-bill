@@ -1,0 +1,10 @@
+<view class="page">
+    <view class="page__bd page__bd_spacing">
+        <button bindtap="getUserInfo" open-type="getUserInfo">请先授权</button>
+
+        <a bindtap="open" data-url="add" class="weui-btn weui-btn_default">记一笔</a>
+        <a bindtap="open" data-url="list" class="weui-btn weui-btn_default">明细</a>
+        <a bindtap="open" data-url="calculate" class="weui-btn weui-btn_default">汇总</a>
+        
+    </view>
+</view>

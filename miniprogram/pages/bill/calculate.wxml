@@ -1,0 +1,36 @@
+<view class="page" data-weui-theme="{{theme}}">
+
+	<view class="page__bd">
+		<view class="weui-cells__title">记账明细</view>
+		<view class="weui-cell weui-cell_active">
+			<view class="weui-cell__hd">
+				<view class="weui-label">开始日期</view>
+			</view>
+			<view class="weui-cell__bd">
+				<picker mode="date" bindchange="startDateChange">
+					<view class="weui-input">{{startDate}}</view>
+				</picker>
+			</view>
+		</view>
+		<view class="weui-cell weui-cell_active">
+			<view class="weui-cell__hd">
+				<view class="weui-label">结束日期</view>
+			</view>
+			<view class="weui-cell__bd">
+				<picker mode="date" bindchange="endDateChange">
+					<view class="weui-input">{{endDate}}</view>
+				</picker>
+			</view>
+		</view>
+			<view class="weui-form__opr-area">
+			<a class="weui-btn weui-btn_primary" bindtap="calculate">计算</a>
+		</view>
+		<view wx:for="{{bills}}" wx:key="{{index}}" class="weui-cells weui-cells_after-title">
+			<navigator class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+				<view class="weui-cell__bd">{{bills[index].userName}}</view>
+				<view class="weui-cell__ft weui-cell__ft_in-access">{{bills[index].money}}元</view>
+			</navigator>
+		</view>
+	</view>
+
+</view>
