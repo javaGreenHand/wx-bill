@@ -1,12 +1,18 @@
 <view class="page" data-weui-theme="{{theme}}">
 	<view class="weui-form">
-	
+
 		<view class="weui-form__text-area">
 			<view class="weui-uploader__input-box">
 				<view class="weui-uploader__input" bindtap="chooseMoneyFile"></view>
 			</view>
-			<view wx:for="{{images}}" wx:key="{{index}}" class="weui-uploader__file weui-uploader__file_status">
+			<view wx:for="{{images}}" wx:key="{{index}}" data-src="{{item}}" bindtap="openGallery" class="weui-uploader__file weui-uploader__file_status">
 				<image src="{{item}}" class="weui-uploader__img" mode="aspectFill" />
+			</view>
+
+			<view wx:if="{{gallery}}" class="weui-gallery fadeIn" bindtap="closeGallery">
+				<view class="weui-gallery__img__wrp">
+					<image mode="aspectFit" class="weui-gallery__img" src="{{src}}"></image>
+				</view>
 			</view>
 		</view>
 
@@ -57,7 +63,7 @@
 								</checkbox-group>
 							</view>
 							<view class="weui-dialog__ft">
-								<a class="weui-dialog__btn weui-dialog__btn_default" bindtap="close">取消</a>
+								<a class="weui-dialog__btn weui-dialog__btn_default" bindtap="closeUserDialog">取消</a>
 								<a class="weui-dialog__btn weui-dialog__btn_primary" bindtap="setUsers">确定</a>
 							</view>
 						</view>

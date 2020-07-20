@@ -43,7 +43,7 @@ Page({
     }
     var _this = this;
     wx.request({
-      url: 'http://192.168.1.110:8080/bill/calculate?startDate=' + startDate + '&endDate=' + endDate,
+      url: 'http://192.168.1.111:8080/bill/calculate?startDate=' + startDate + '&endDate=' + endDate,
       method: 'GET',
       success: function (res) {
         if (res.data.success) {

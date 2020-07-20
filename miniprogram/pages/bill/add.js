@@ -29,17 +29,19 @@ Page({
     ],
     userDialog: false,
     userTemp: [],
+    gallery: false,
+    src: '',
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     var _this = this;
     var id = options.id;
-    if(null == id || '' == id){
+    if (null == id || '' == id) {
       return;
     }
 
     wx.request({
-      url: 'http://192.168.1.110:8080/bill/getById?id=' + id,
+      url: 'http://192.168.1.111:8080/bill/getById?id=' + id,
       method: 'GET',
       success: function (res) {
         var model = res.data.model;
@@ -74,10 +76,10 @@ Page({
           createUser: res.userInfo.nickName
         }
         var url;
-        if('' != _this.data.id ){
-          url = 'http://192.168.1.110:8080/bill/updateById/' + _this.data.id;
-        }else{
-          url = 'http://192.168.1.110:8080/bill/add';
+        if ('' != _this.data.id) {
+          url = 'http://192.168.1.111:8080/bill/updateById/' + _this.data.id;
+        } else {
+          url = 'http://192.168.1.111:8080/bill/add';
         }
         // 上传数据
         wx.request({
@@ -128,7 +130,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         wx.uploadFile({
-          url: 'http://192.168.1.110:8080/file/upload',
+          url: 'http://192.168.1.111:8080/file/upload',
           filePath: tempFilePaths[0],
           name: 'file',
           success(res) {
@@ -161,7 +163,7 @@ Page({
     this.setData({
       users: this.data.userTemp
     })
-    this.close();
+    this.closeUserDialog();
   },
 
   // 选择付款人
@@ -184,7 +186,7 @@ Page({
     });
   },
 
-  close: function () {
+  closeUserDialog: function () {
     this.setData({
       userDialog: false,
     })
@@ -200,6 +202,19 @@ Page({
     this.setData({
       money: e.detail.value
     })
+  },
+
+  closeGallery: function () {
+    this.setData({
+      gallery: false
+    });
+  },
+  openGallery: function (event) {
+    console.log(event.currentTarget.dataset.src);
+    this.setData({
+      gallery: true,
+      src: event.currentTarget.dataset.src
+    });
   },
 
 })
